@@ -1,6 +1,7 @@
 <?php
 
-include $_SERVER['DOCUMENT_ROOT'] . '/includes/magicquotes.inc.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/includes/magicquotes.inc.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/db.inc.php'; // Establish db connection in include file
 
 // Checks if the query string contains a variable named addjoke
 if (isset($_GET['addjoke']))
@@ -12,7 +13,6 @@ if (isset($_GET['addjoke']))
 // Adds a joke to the database
 if (isset($_POST['joketext'])) // Detects form submission
 {
-  include $_SERVER['DOCUMENT_ROOT'] . '/includes/db.inc.php'; // Establish db connection in include file
   try
   {
     $sql = 'INSERT INTO joke SET
@@ -36,7 +36,6 @@ if (isset($_POST['joketext'])) // Detects form submission
 // Deletes joke from the database
 if (isset($_GET['deletejoke']))
 {
-  include $_SERVER['DOCUMENT_ROOT'] . '/includes/db.inc.php';
   try
   {
     $sql = 'DELETE FROM joke WHERE id = :id'; // Use placeholder
@@ -54,8 +53,6 @@ if (isset($_GET['deletejoke']))
   header('Location: .'); // Asks the browser to send a new request to view the updated list of jokes
   exit();
 }
-
-include $_SERVER['DOCUMENT_ROOT'] . '/includes/db.inc.php';
 
 // The first controller load, displays list of jokes
 try
