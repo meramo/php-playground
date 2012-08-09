@@ -18,7 +18,7 @@
               <?php htmlout($author['name']); ?>
               <input type="hidden" name="id" value="<?php echo $author['id']; ?>">
               <input type="submit" name="action" value="Edit">
-              <input type="submit" name="action" value="Delete">
+              <input type="submit" name="action" value="Delete" onclick="return confirm('Are you sure you want to delete?')"/>
             </div>
           </form>
         </li>
