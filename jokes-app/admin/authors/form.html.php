@@ -9,6 +9,7 @@
   </head>
   <body>
     <h1><?php htmlout($pageTitle); ?></h1>
+    <!-- Action is addform -->
     <form action="?<?php htmlout($action); ?>" method="post">
       <div>
         <label for="name">Name: <input type="text" name="name"
