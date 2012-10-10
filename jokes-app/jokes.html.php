@@ -18,8 +18,8 @@
       <form action="?deletejoke" method="post">
         <blockquote>
           <p>
-            <?php htmlout($joke['text']) ?>
-            <input type="hidden" name="id" value="<?php echo $joke['id']; ?>">
+            <?php markdownout($joke['text']) ?> <!-- Making use of helper for htmlspecialchars() -->
+            <input type="number" name="id" value="<?php echo $joke['id']; ?>">
             <input type="submit" value="Delete">
             (by <a href="mailto:
             <?php htmlout($joke['email']); ?>">
@@ -28,6 +28,6 @@
         </blockquote>
       </form>
     <?php endforeach; ?>
-    
+
   </body>
 </html>

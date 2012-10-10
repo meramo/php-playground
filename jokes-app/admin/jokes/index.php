@@ -1,5 +1,6 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . '/includes/magicquotes.inc.php';
+include_once $_SERVER['DOCUMENT_ROOT'] .
+    '/includes/magicquotes.inc.php';
 
 if (isset($_GET['add']))
 {
@@ -311,7 +312,6 @@ if (isset($_POST['action']) and $_POST['action'] == 'Delete')
   exit();
 }
 
-// Checks if the searchform has been submitted
 if (isset($_GET['action']) and $_GET['action'] == 'search')
 {
   include $_SERVER['DOCUMENT_ROOT'] . '/includes/db.inc.php';
@@ -319,9 +319,9 @@ if (isset($_GET['action']) and $_GET['action'] == 'search')
   // The basic SELECT statement
   $select = 'SELECT id, joketext';
   $from   = ' FROM joke';
-  $where  = ' WHERE TRUE'; // Just means "do nothing"
+  $where  = ' WHERE TRUE';
 
-  $placeholders = array(); // Stores all placeholder in an array for future use
+  $placeholders = array();
 
   if ($_GET['author'] != '') // An author is selected
   {
@@ -342,12 +342,11 @@ if (isset($_GET['action']) and $_GET['action'] == 'search')
     $placeholders[':joketext'] = '%' . $_GET['text'] . '%';
   }
 
-  // Final query based on the above
   try
   {
     $sql = $select . $from . $where;
     $s = $pdo->prepare($sql);
-    $s->execute($placeholders); // No need to use bindvalue here
+    $s->execute($placeholders);
   }
   catch (PDOException $e)
   {
@@ -365,10 +364,9 @@ if (isset($_GET['action']) and $_GET['action'] == 'search')
   exit();
 }
 
-// Displays search form. Prepares arrays needed for the searchform
+// Display search form
 include $_SERVER['DOCUMENT_ROOT'] . '/includes/db.inc.php';
 
-// Prepares authors array
 try
 {
   $result = $pdo->query('SELECT id, name FROM author');
@@ -385,7 +383,6 @@ foreach ($result as $row)
   $authors[] = array('id' => $row['id'], 'name' => $row['name']);
 }
 
-// Prepares categories array
 try
 {
   $result = $pdo->query('SELECT id, name FROM category');

@@ -15,6 +15,8 @@
       <div>
         <label for="joketext">Type your joke here:</label>
         <textarea id="joketext" name="joketext" rows="3" cols="40"></textarea>
+       <!--  <label for="jokeauthorid">Specify the author ID:</label>
+        <input type="text" id="jokeauthorid" name="jokeauthorid"/> -->
       </div>
       <div><input type="submit" value="Add"></div>
     </form>

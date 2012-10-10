@@ -1,7 +1,7 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] .'/includes/magicquotes.inc.php';
+include_once $_SERVER['DOCUMENT_ROOT'] .
+    '/includes/magicquotes.inc.php';
 
-// Listens for ?add parameter from form
 if (isset($_GET['add']))
 {
   $pageTitle = 'New Category';
@@ -14,7 +14,6 @@ if (isset($_GET['add']))
   exit();
 }
 
-// Submits the new category to db
 if (isset($_GET['addform']))
 {
   include $_SERVER['DOCUMENT_ROOT'] . '/includes/db.inc.php';
@@ -38,7 +37,6 @@ if (isset($_GET['addform']))
   exit();
 }
 
-// Opens a category for editing
 if (isset($_POST['action']) and $_POST['action'] == 'Edit')
 {
   include $_SERVER['DOCUMENT_ROOT'] . '/includes/db.inc.php';
@@ -69,7 +67,6 @@ if (isset($_POST['action']) and $_POST['action'] == 'Edit')
   exit();
 }
 
-// Submits the edited category to db
 if (isset($_GET['editform']))
 {
   include $_SERVER['DOCUMENT_ROOT'] . '/includes/db.inc.php';
@@ -95,12 +92,11 @@ if (isset($_GET['editform']))
   exit();
 }
 
-// Logic to delete categories
 if (isset($_POST['action']) and $_POST['action'] == 'Delete')
 {
   include $_SERVER['DOCUMENT_ROOT'] . '/includes/db.inc.php';
 
-  // Deletes joke associations with this category
+  // Delete joke associations with this category
   try
   {
     $sql = 'DELETE FROM jokecategory WHERE categoryid = :id';
@@ -115,7 +111,7 @@ if (isset($_POST['action']) and $_POST['action'] == 'Delete')
     exit();
   }
 
-  // Deletes the category
+  // Delete the category
   try
   {
     $sql = 'DELETE FROM category WHERE id = :id';
@@ -134,7 +130,7 @@ if (isset($_POST['action']) and $_POST['action'] == 'Delete')
   exit();
 }
 
-// Displays category list
+// Display category list
 include $_SERVER['DOCUMENT_ROOT'] . '/includes/db.inc.php';
 
 try

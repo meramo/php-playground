@@ -1,7 +1,7 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] .'/includes/magicquotes.inc.php';
+include_once $_SERVER['DOCUMENT_ROOT'] .
+    '/includes/magicquotes.inc.php';
 
-// Displays the add form after getting the ?add from authors.html.php
 if (isset($_GET['add']))
 {
   $pageTitle = 'New Author';
@@ -15,7 +15,6 @@ if (isset($_GET['add']))
   exit();
 }
 
-// Submits the new author from the previously displayed form
 if (isset($_GET['addform']))
 {
   include $_SERVER['DOCUMENT_ROOT'] . '/includes/db.inc.php';
@@ -36,12 +35,11 @@ if (isset($_GET['addform']))
     include 'error.html.php';
     exit();
   }
-  // After form submission, displays the list of authors from the controller
+
   header('Location: .');
   exit();
 }
 
-// Edits the author in authors.html.php
 if (isset($_POST['action']) and $_POST['action'] == 'Edit')
 {
   include $_SERVER['DOCUMENT_ROOT'] . '/includes/db.inc.php';
@@ -60,7 +58,6 @@ if (isset($_POST['action']) and $_POST['action'] == 'Edit')
     exit();
   }
 
-  // Holds the SELECT result
   $row = $s->fetch();
 
   $pageTitle = 'Edit Author';
@@ -74,7 +71,6 @@ if (isset($_POST['action']) and $_POST['action'] == 'Edit')
   exit();
 }
 
-// Submits the edited author to the database
 if (isset($_GET['editform']))
 {
   include $_SERVER['DOCUMENT_ROOT'] . '/includes/db.inc.php';
@@ -102,12 +98,11 @@ if (isset($_GET['editform']))
   exit();
 }
 
-// Deletes the author and all associated data
 if (isset($_POST['action']) and $_POST['action'] == 'Delete')
 {
   include $_SERVER['DOCUMENT_ROOT'] . '/includes/db.inc.php';
 
-  // Gets jokes belonging to author
+  // Get jokes belonging to author
   try
   {
     $sql = 'SELECT id FROM joke WHERE authorid = :id';
@@ -122,10 +117,9 @@ if (isset($_POST['action']) and $_POST['action'] == 'Delete')
     exit();
   }
 
-  // Retrieves the entire set of results for the query and store them in a PHP array ($result)
   $result = $s->fetchAll();
 
-  // Deletes joke category entries
+  // Delete joke category entries
   try
   {
     $sql = 'DELETE FROM jokecategory WHERE jokeid = :id';
@@ -146,7 +140,7 @@ if (isset($_POST['action']) and $_POST['action'] == 'Delete')
     exit();
   }
 
-  // Deletes jokes belonging to author
+  // Delete jokes belonging to author
   try
   {
     $sql = 'DELETE FROM joke WHERE authorid = :id';
@@ -180,7 +174,7 @@ if (isset($_POST['action']) and $_POST['action'] == 'Delete')
   exit();
 }
 
-// Displays author list. Default behaviour
+// Display author list
 include $_SERVER['DOCUMENT_ROOT'] . '/includes/db.inc.php';
 
 try
