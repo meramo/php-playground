@@ -2,6 +2,22 @@
 include_once $_SERVER['DOCUMENT_ROOT'] .
     '/includes/magicquotes.inc.php';
 
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/access.inc.php';
+
+// Checks if user is logged-in and has role
+if (!userIsLoggedIn())
+{
+  include '../login.html.php';
+  exit();
+}
+
+if (!userHasRole('Content Editor'))
+{
+  $error = 'Only Content Editors may access this page.';
+  include '../accessdenied.html.php';
+  exit();
+}
+
 if (isset($_GET['add']))
 {
   $pageTitle = 'New Joke';
